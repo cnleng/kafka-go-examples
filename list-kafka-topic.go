@@ -11,7 +11,8 @@ func main() {
 	config.Consumer.Return.Errors = true
 
 	//kafka end point
-	brokers := []string{"localhost:9092"}
+	// brokers := []string{"52.255.238.180:9092"}
+	brokers := []string{"192.168.204.128:9092"}
 
 	//get broker
 	cluster, err := sarama.NewConsumer(brokers, config)
@@ -29,5 +30,6 @@ func main() {
 	topics, _ := cluster.Topics()
 	for index := range topics {
 		fmt.Println(topics[index])
+
 	}
 }

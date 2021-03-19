@@ -10,7 +10,8 @@ import (
 
 func main() {
 	// Set broker configuration
-	ips := []string{"localhost:9092"}
+	ips := []string{"100.80.250.216:9092"}
+	// ips := []string{"192.168.204.128:9092"}
 	for _, ip := range ips {
 		broker := sarama.NewBroker(ip)
 
@@ -30,13 +31,15 @@ func main() {
 		// Setup the Topic details in CreateTopicRequest struct
 		topics := []string{"WorkloadResponse", "PipelineCreationRequest", "DeployApplicationRequest",
 			"ApplicationDeploymentState", "PipelineCreatedOrAlreadyPresent", "ApplicationPipelineState",
-			"ApplicationPipelineInvoked", "DeployApplicationRequest", "Workload"}
+			"ApplicationPipelineInvoked", "DeployApplicationRequest", "Workload",
+			"PROVISION_CLUSTER_COMPLETED", "ClusterCredentialsRequest",
+			"ClusterCredentialsAcquired"}
+		//topics := []string{"TEST_TOPIC"}
 		for _, topic := range topics {
 			topicDetail := &sarama.TopicDetail{}
-			topicDetail.NumPartitions = int32(4)
-			topicDetail.ReplicationFactor = int16(3)
+			topicDetail.NumPartitions = int32(3)
+			topicDetail.ReplicationFactor = int16(1)
 			topicDetail.ConfigEntries = make(map[string]*string)
-
 			topicDetails := make(map[string]*sarama.TopicDetail)
 			topicDetails[topic] = topicDetail
 

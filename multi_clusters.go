@@ -19,9 +19,9 @@ func main() {
 	config.Consumer.Offsets.CommitInterval = time.Second
 
 	// init consumer
-	brokers := []string{"localhost:9092"}
-	topics := []string{"test_topic", "second_topic", "third_topic"}
-	consumer, err := cluster.NewConsumer(brokers, "my-consumer-group", topics, config)
+	brokers := []string{"52.255.238.180:9092"}
+	topics := []string{"TEST_TOPIC"}
+	consumer, err := cluster.NewConsumer(brokers, "cncp-demo", topics, config)
 	if err != nil {
 		panic(err)
 	}
