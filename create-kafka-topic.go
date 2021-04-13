@@ -11,6 +11,7 @@ import (
 func main() {
 	// Set broker configuration
 	ips := []string{"100.80.250.216:9092"}
+	// ips := []string{"100.80.250.185:32400"}
 	// ips := []string{"192.168.204.128:9092"}
 	for _, ip := range ips {
 		broker := sarama.NewBroker(ip)
@@ -29,15 +30,19 @@ func main() {
 		log.Print(connected)
 
 		// Setup the Topic details in CreateTopicRequest struct
-		topics := []string{"WorkloadResponse", "PipelineCreationRequest", "DeployApplicationRequest",
+		topics := []string{"WorkloadResponse", "PipelineCreationRequest",
 			"ApplicationDeploymentState", "PipelineCreatedOrAlreadyPresent", "ApplicationPipelineState",
 			"ApplicationPipelineInvoked", "DeployApplicationRequest", "Workload",
-			"PROVISION_CLUSTER_COMPLETED", "ClusterCredentialsRequest",
+			"ClusterCredentialsRequest", "PROVISION_CLUSTER_COMPLETED",
 			"ClusterCredentialsAcquired"}
-		//topics := []string{"TEST_TOPIC"}
+		// "PROVISION_CLUSTER_COMPLETED",
+		// topics := []string{"WorkloadResponse", "PipelineCreationRequest", "DeployApplicationRequest",
+		// 	"ApplicationDeploymentState", "PipelineCreatedOrAlreadyPresent", "ApplicationPipelineState",
+		// 	"ApplicationPipelineInvoked", "DeployApplicationRequest", "Workload"}
+		// topics := []string{"ClusterCredentialsRequest", "ClusterCredentialsAcquired"}
 		for _, topic := range topics {
 			topicDetail := &sarama.TopicDetail{}
-			topicDetail.NumPartitions = int32(3)
+			topicDetail.NumPartitions = int32(1)
 			topicDetail.ReplicationFactor = int16(1)
 			topicDetail.ConfigEntries = make(map[string]*string)
 			topicDetails := make(map[string]*sarama.TopicDetail)

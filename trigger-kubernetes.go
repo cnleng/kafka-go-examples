@@ -15,12 +15,12 @@ func main() {
 	}
 
 	variables := map[string]string{
-		"KUBE_ACCOUNT":    "kubemaster01",
+		"KUBE_ACCOUNT":    "gjhgkhj",
 		"DATA_MOUNT_PATH": "data",
 		"NFS_STORAGE_PVC": "nfs-storage-pvc",
 	}
 
-	projectID := 2
+	projectID := 37
 
 	log.Println("Checking trigger ...")
 	triggers, _, err := git.PipelineTriggers.ListPipelineTriggers(projectID, nil)
